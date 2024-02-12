@@ -53,3 +53,6 @@ export const handleKeyUp = (event) => {
     playSound(keyBindings[key]);
   }
 };
+export  const handleClick = (note) => {
+  playSound(note);
+};
