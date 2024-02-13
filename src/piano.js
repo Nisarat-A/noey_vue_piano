@@ -1,25 +1,3 @@
-export const getAudioPath = (note) => {
-  const path = `./src/piano-mp3/${note}.mp3`;
-  console.log("Audio Path:", path);
-  return path;
-};
-//test-idea/src/piano-mp3
-export const playSound = (note) => {
-  const audioPath = getAudioPath(note);
-  try {
-    const audio = new Audio(audioPath);
-    audio.play();
-    console.log("Audio played successfully");
-  } catch (error) {
-    console.error("Error playing audio:", error);
-  }
-};
-
-export const isBlackKey = (note) => {
-  const blackKeys = ["Bb", "Db", "Eb", "Gb", "Ab"];
-  return blackKeys.includes(note.substring(0, 2));
-};
-
 export const keyBindings = {
   A: "A3",
   S: "Bb3",
@@ -47,12 +25,37 @@ export const keyBindings = {
   E: "Ab5",
   R: "A5",
 };
+export const isBlackKey = (note) => {
+  const blackKeys = ["Bb", "Db", "Eb", "Gb", "Ab"];
+  return blackKeys.includes(note.substring(0, 2));
+};
+
+export const getAudioPath = (note) => {
+  const path = `./src/piano-mp3/${note}.mp3`;
+  console.log("Audio Path:", path);
+  return path;
+};
+
+export const playSound = (note) => {
+  const audioPath = getAudioPath(note);
+  try {
+    const audio = new Audio(audioPath);
+
+    audio.play();
+    console.log("Audio played successfully");
+  } catch (error) {
+    console.error("Error playing audio:", error);
+  }
+};
+
+
+
 export const handleKeyUp = (event) => {
   const key = event.key.toUpperCase();
   if (keyBindings[key]) {
     playSound(keyBindings[key]);
   }
 };
-export  const handleClick = (note) => {
+export const handleClick = (note) => {
   playSound(note);
 };
